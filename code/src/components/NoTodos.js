@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
+import image from '../img/good_work.png';
 
-// styling notodos
 const NotodosContainer = styled.div`
   text-align: center;
   margin: 20px auto;
@@ -10,15 +10,28 @@ const NotodosContainer = styled.div`
   i {
     font-size: 40px;
   }
+
+  div {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 `;
 
 const NoTodos = () => {
   return (
     <NotodosContainer>
       <p>No tasks at the moment!</p>
-      <i className="fas fa-list-alt"></i>
+      <div>
+        <img src={image} alt='notodos' />
+      </div>
     </NotodosContainer>
-  )
+  );
 };
 
 export default NoTodos;

@@ -1,44 +1,47 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const AddTodoContainer = styled.section`
-  text-align: center;
-  margin: 10px auto;
-  gap:10px;
-`; 
+  gap: 10px;
+  display: flex;
+  align-items: center;
+`;
 
 export const Input = styled.input`
   border: none;
-  margin: 20px auto;
-  padding: 10px;
   background-color: transparent;
-  border-bottom: 1px solid rgb(170, 170, 170);
-  font-size: 18px;
+  padding: 10px;
+  border-bottom: 1px solid var(--dark);
+  width: 100%;
+  max-width: 363px;
 
   ::placeholder {
-    font-family: "Roboto",-apple-system;
+    color: var(--dark);
+    font-family: var(--font-family);
   }
 `;
 
 export const AddButton = styled.button`
-  width: 50px;
+  max-width: 50px;
+  width: 100%;
   height: 40px;
+  border-radius: 10px;
   border: none;
-  background-color: green;
-  color: white;
-  border-radius: 5px;
-  padding: 10px;
+  background-color: var(--green);
+  color: var(--white);
+  padding: 8px;
   font-size: 20px;
-  margin-top: 20px;
 `;
 
 export const Select = styled.select`
-  width: 190px;
-  height: 35px;
-  color: black;
+  height: 40px;
+  padding: 0 6px;
+  color: var(--dark);
   border-radius: 5px;
-  border: 1px solid rgb(170, 170, 170);
+  border: 1px solid var(--dark);
+  width: 100%;
+`;
 
-  option {
-    color:gray;
-  }
+export const SelectContainer = styled.div`
+  width: 100%;
+  max-width: 200px;
 `;

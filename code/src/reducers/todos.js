@@ -1,57 +1,31 @@
-// creating first slice here 
-// step 1 importing createSlice from toolkit
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-// name variables as name of the file
-// createSlice take in an argumnets, an object 
 const todos = createSlice({
-  name: 'todos', 
-  // initialState is an object
+  name: 'todos',
   initialState: {
-    items: []
+    items: [],
   },
-  // reducers is just another objects where each property is just one method
-  // to update the store 
-  // reducers provides with two arguments, one is the store, 
-  // and the second is action 
-  reducers:{
-    // arguments are the data that you pass, this data is about a todo you want to add 
+  reducers: {
     addTodo: (store, action) => {
       const newTodo = action.payload;
-      // payload is like a variable 	
-      // ...(three dots) is spread what was before, plus add data
-      store.items = [...store.items, newTodo]
-
-    }, 
-    // to check the checkbox 
+      store.items = [...store.items, newTodo];
+      console.log(store.items);
+    },
     toggleTodo: (store, action) => {
-      const updatedItems = store.items.map((item) => {
-        if (item.id === action.payload) {
-          const updatedTodo = {
-            ...item,
-            isComplete: !item.isComplete
-          }
-          return updatedTodo;
-        } else {
-          return item;
-        }
-      });
-      
-      store.items = updatedItems;
+      const task = store.items.find((item) => item.id === action.payload);
+      task.isComplete = !task.isComplete;
     },
     deleteTodo: (store, action) => {
-      const decreasedItems = store.items.filter((item) => item.id !== action.payload)
+      const decreasedItems = store.items.filter(
+        (item) => item.id !== action.payload
+      );
 
       store.items = decreasedItems;
     },
     clearAllTodos: (store) => {
       store.items = [];
-      },
+    },
   },
 });
 
 export default todos;
-
-
-// slices are chucks of code in out store
-// we can have as many as we want 

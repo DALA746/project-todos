@@ -1,64 +1,65 @@
-import React, { useState} from 'react';
-// in order to send data nad update the store we need useDispatch
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// package that gives us unique id 
 import uniqid from 'uniqid';
-// slice 
 import todos from '../reducers/todos';
-// styling 
 import {
-  AddTodoContainer, 
-  Input, 
-  AddButton, 
-  Select
-} from '../styled-components/AddTodoStyling'
+  AddTodoContainer,
+  Input,
+  AddButton,
+  Select,
+  SelectContainer,
+} from '../styled-components/AddTodoStyling';
 
 const AddTodo = () => {
-
   const [input, setInput] = useState('');
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState('');
 
   const dispatch = useDispatch();
 
   const onAddTodo = () => {
-    // callinling action addTodo from the reducer
-    dispatch(todos.actions.addTodo({
-      id: uniqid(),
-      text: input,
-      category: category,
-      // need this to trigger todos if there are completed or not
-      isComplete: false, 
-    }));
-    // setting input field to an empty string
-    setInput("");
-    setCategory("");
+    dispatch(
+      todos.actions.addTodo({
+        id: uniqid(),
+        text: input,
+        category: category,
+        isComplete: false,
+      })
+    );
+
+    setInput('');
+    setCategory('');
   };
 
   return (
     <>
-    <AddTodoContainer>
-      <Input 
-        props={input.length}
-        type="text" 
-        placeholder="Add todo here..."
-        value={input} 
-        onChange={(event) => setInput(event.target.value)} maxLength={20}/>
-      <div>
-        <Select value={category} onChange={(event) => setCategory(event.target.value)} required>
-          <option value="">Select category...</option>
-          <option value="Work">Work</option> 
-          <option value="Studies">Studies</option>
-          <option value="Family & Friends">Family & Friends</option>
-          <option value="Health">Health</option>
-          <option value="Other">Other</option>
-        </Select>
-      </div>
-      <AddButton onClick={onAddTodo} disabled={input === ""}>
-        <i className="fas fa-plus"></i>
-      </AddButton>
-    </AddTodoContainer>
+      <h2>Let's have a productive day today</h2>
+      <AddTodoContainer>
+        <Input
+          props={input.length}
+          type='text'
+          placeholder='Add todo...'
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+          maxLength={100}
+        />
+        <SelectContainer>
+          <Select
+            value={category}
+            onChange={(event) => setCategory(event.target.value)}>
+            <option value=''>Category...</option>
+            <option value='Work'>Work</option>
+            <option value='Studies'>Studies</option>
+            <option value='Family & Friends'>Family</option>
+            <option value='Health'>Health</option>
+            <option value='Other'>Other</option>
+          </Select>
+        </SelectContainer>
+        <AddButton onClick={onAddTodo} disabled={input === ''}>
+          <i className='fas fa-plus'></i>
+        </AddButton>
+      </AddTodoContainer>
     </>
-  )
+  );
 };
 
 export default AddTodo;
