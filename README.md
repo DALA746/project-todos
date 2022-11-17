@@ -10,4 +10,4 @@ This project is about creating a React Redux todo app with the functionality to 
 
 ## View it live
 
-https://todo-app-by-darya.netlify.app/
+https://todo-app-by-darya.netlify.app
